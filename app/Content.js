@@ -5,6 +5,9 @@ module.exports = class Meta {
     constructor( content = default_text )
     {
         this.source_content = content;
+        this.dom_list = [];
+        this.article_source = [];
+        this.generate_dom_tree();
     }
     old()
     {
@@ -17,26 +20,44 @@ module.exports = class Meta {
             "#mainContent article .imgBox .innerContent h3",
             "#mainContent article .imgBox .innerContent p"
         ];
+        switch ( element.tagName ) {
+            case "img": return element.attributes.src;
+            case "figcaption": return element.structuredText;
+            case "h2": return element.rawText;
+            case "p": return element.rawText;
+            // element.rawText
+            default: return "";
+        }
         // selectors.join(", ")
         // "#mainContent article .imgBox"
     }
-    virtual_tree( content = "<div></div>" )
+    generate_dom_tree()
     {
-        let template_head = `<head><title>Virtual DOM Tree</title><meta charset="utf-8" /></head>`;
-        let template_body = `<body>${ content }</body>`;
-        let template = `<!doctype html><html> ${ template_head } ${ template_body } </html>`;
-        return parse( template );
+        this.dom_list = parse( this.source_content ).querySelectorAll( "#mainContent article .imgBox" );
+    }
+    generate_article_source()
+    {
+        const content_selectors = [ "figure img", "figure figcaption", "h2", "p" ];
+        this.article_source = this.dom_list.map( dom => dom.querySelectorAll( content_selectors.join(", ") ) );
     }
     result()
     {
-        const list = parse( this.source_content ).querySelectorAll( "#mainContent article .imgBox" );
-        const result = list.map( dom =>
+        this.generate_article_source();
+        return this.article_source.map( article =>
         {
-            const figure = dom.querySelectorAll("figure img, figure figcaption");
-            const article = dom.querySelectorAll("h2, p");
-            debugger;
+            return article.map( element =>
+            {
+                const dom_dictonary = {
+                    "figcaption": "structuredText",
+                    "h2": "rawText",
+                    "p": "rawText",
+                };
+                if( element.tagName === "img" )
+                {
+                    return element.attributes.src;
+                }
+                return element[ dom_dictonary[ element.tagName ] ];
+            });
         });
-        debugger;
-        return result;
     }
 }
