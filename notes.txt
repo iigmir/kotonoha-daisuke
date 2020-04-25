@@ -1,0 +1,41 @@
+document.querySelectorAll("#mainContent article")
+const article = (s = "") => document.querySelectorAll(s);
+article(`#mainContent article header h1,
+#mainContent article header .headerBar time,
+#mainContent article header .headerBar .author,
+#mainContent article .repost .box`)
+
+Article:
+#mainContent article
+
+Meta:
+#mainContent article header h1,
+#mainContent article header .headerBar time,
+#mainContent article header .headerBar .author,
+#mainContent article .repost .box
+
+Image:
+#mainContent article .imgBox figure img[src],
+#mainContent article .imgBox figure figcaption
+
+Content:
+#mainContent article > .innerContent p,
+#mainContent article .imgBox .innerContent h1,
+#mainContent article .imgBox .innerContent h2,
+#mainContent article .imgBox .innerContent h3,
+#mainContent article .imgBox .innerContent p
+
+All:
+#mainContent article > .innerContent p,
+#mainContent article .imgBox figure img[src],
+#mainContent article .imgBox figure figcaption,
+#mainContent article .imgBox .innerContent h1,
+#mainContent article .imgBox .innerContent h2,
+#mainContent article .imgBox .innerContent h3,
+#mainContent article .imgBox .innerContent p
+
+References:
+#mainContent article .imgBox .sectionWrap section h4,
+#mainContent article .imgBox .sectionWrap section li,
+#mainContent article .imgBox .sectionWrap #reference-material h4,
+#mainContent article .imgBox .sectionWrap #reference-material li
