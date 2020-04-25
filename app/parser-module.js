@@ -3,7 +3,6 @@ const Meta = require( "./Meta.js" );
 
 module.exports = ( content = default_text ) =>
 {
-    let meta = new Meta( content );
-    let meta_result = meta.result();
-    debugger;
+    let meta = new Meta( content ).result();
+    return { meta };
 }

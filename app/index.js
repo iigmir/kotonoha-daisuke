@@ -8,6 +8,9 @@ module.exports = async (url = "https://dq.yam.com/post.php?id=12432") =>
     if( content )
     {
         result = parser( content );
+        // console.log( result );
+        return result;
     }
-    return result;
+    
+    return {meta: { title: ":-(" } };
 };
