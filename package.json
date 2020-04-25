@@ -1,13 +1,13 @@
 {
-  "name": "kotonohadaisuke",
+  "name": "kotonoha-daisuke",
   "version": "1.0.0",
-  "description": "A carwler that can get contents from dq.com",
+  "description": "A simple carwler that can get contents from dq.yam.com",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./spec/index.spec.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "iigmir",
+  "license": "LGPL",
   "devDependencies": {
     "mocha": "^7.1.1"
   },
