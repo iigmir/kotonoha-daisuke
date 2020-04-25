@@ -1,5 +1,5 @@
 const request = require("./request-module.js");
-const parser = require("./parser-module.js");
+const parser = require("./parser/index.js");
 
 module.exports = async (url = "https://dq.yam.com/post.php?id=12432") =>
 {
