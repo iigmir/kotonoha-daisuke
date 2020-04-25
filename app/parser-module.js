@@ -5,6 +5,6 @@ const Content = require( "./Content.js" );
 module.exports = ( content = default_text ) =>
 {
     let meta = new Meta( content ).result();
-    let contents = new Content( content );
-    return { meta };
+    let contents = new Content( content ).result();
+    return { meta, contents };
 }
