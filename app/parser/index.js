@@ -6,7 +6,7 @@ const Reference = require( "./Reference.js" );
 module.exports = ( content = default_text ) =>
 {
     const meta = new Meta( content ).result();
-    const contents = new Content( content ).result();
+    const contents = new Content( content ).result().flat();
     const references = new Reference( content ).result();
     return { meta, contents, references };
 }

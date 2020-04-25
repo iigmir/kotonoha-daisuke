@@ -24,7 +24,7 @@ module.exports = class Reference {
     {
         return this.dom_list.querySelectorAll("section li").map( dom => {
             return {
-                text: dom.structuredText,
+                name: dom.structuredText,
                 href: dom.querySelector("a").attributes.href
             };
         });

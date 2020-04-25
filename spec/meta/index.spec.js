@@ -1,4 +1,4 @@
-const Meta = require("../../app/Meta.js");
+const Meta = require("../../app/parser/Meta.js");
 const fs = require("fs");
 const case1_expected = require("./case1.json");
 const assert = require("assert");

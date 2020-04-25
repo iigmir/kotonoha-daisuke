@@ -40,12 +40,15 @@ module.exports = class Content {
         const content_selectors = [ "figure img", "figure figcaption", "h2", "p" ];
         this.article_source = this.dom_list.map( dom => dom.querySelectorAll( content_selectors.join(", ") ) );
     }
+    add_intro()
+    {
+        // "「亞美利加」（America）這四個字的最佳演唱方式為何？" @ https://dq.yam.com/post.php?id=12436
+        let introtext = parse( this.source_content ).querySelectorAll( ".innerContent p" );
+    }
     result()
     {
         this.generate_article_source();
-        return this.article_source.map( article =>
-        {
-            return article.map( element =>
+        return this.article_source.map( article => article.map( element =>
             {
                 const dom_dictonary = {
                     "figcaption": "structuredText",
@@ -57,7 +60,7 @@ module.exports = class Content {
                     return element.attributes.src;
                 }
                 return element[ dom_dictonary[ element.tagName ] ];
-            });
-        });
+            })
+        );
     }
 }
