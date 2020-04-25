@@ -1,8 +1,9 @@
 const fs = require("fs");
 
-module.exports = (data = {}) =>
+module.exports = async (data = {}) =>
 {
-    fs.writeFile( "result.json", data, (err) => {
+    let json = await data;
+    fs.writeFile( "result.json", JSON.stringify(json), (err) => {
         if (err) throw err;
     });
 };
