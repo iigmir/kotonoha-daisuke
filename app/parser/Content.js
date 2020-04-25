@@ -9,28 +9,6 @@ module.exports = class Content {
         this.article_source = [];
         this.generate_dom_tree();
     }
-    old()
-    {
-        const selectors = [
-            "#mainContent article > .innerContent p",
-            "#mainContent article .imgBox figure img",
-            "#mainContent article .imgBox figure figcaption",
-            "#mainContent article .imgBox .innerContent h1",
-            "#mainContent article .imgBox .innerContent h2",
-            "#mainContent article .imgBox .innerContent h3",
-            "#mainContent article .imgBox .innerContent p"
-        ];
-        switch ( element.tagName ) {
-            case "img": return element.attributes.src;
-            case "figcaption": return element.structuredText;
-            case "h2": return element.rawText;
-            case "p": return element.rawText;
-            // element.rawText
-            default: return "";
-        }
-        // selectors.join(", ")
-        // "#mainContent article .imgBox"
-    }
     generate_dom_tree()
     {
         this.dom_list = parse( this.source_content ).querySelectorAll( "#mainContent article .imgBox" );
