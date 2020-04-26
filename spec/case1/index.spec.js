@@ -1,4 +1,4 @@
-const KotonohaDaisuke = require("../../index.js");
+const KotonohaDaisuke = require("../../app/index.js");
 const expected = require("./result.json");
 const assert = require("assert");
 
