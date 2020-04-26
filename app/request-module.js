@@ -8,7 +8,7 @@ function is_in_home_page( input = "" )
 async function request_module( url = "https://dq.yam.com/post.php?id=12432" ) {
     try {
         const response = await axios.get( url );
-        if( response.status === 200 && !is_in_home_page )
+        if( response.status === 200 && !is_in_home_page( response.data ) )
         {
             return response.data;
         }
