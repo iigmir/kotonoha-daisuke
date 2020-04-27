@@ -20,13 +20,23 @@ module.exports = class Reference {
         ];
         this.dom_list = parse( this.source_content ).querySelector( "#mainContent article .imgBox .sectionWrap" );
     }
+    list_is_vaild()
+    {
+        return this.dom_list !== null && this.dom_list.querySelectorAll("section li") !== null;
+    }
     result()
     {
-        return this.dom_list.querySelectorAll("section li").map( dom => {
-            return {
-                name: dom.structuredText,
-                href: dom.querySelector("a").attributes.href
-            };
-        });
+        let result = [];
+        if( this.list_is_vaild() )
+        {
+            result = this.dom_list.querySelectorAll("section li").map( dom =>
+            {
+                return {
+                    name: dom.structuredText,
+                    href: dom.querySelector("a").attributes.href
+                };
+            });
+        }
+        return result;
     }
 }
