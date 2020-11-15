@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 function is_in_home_page( input = "" )
 {
@@ -29,4 +29,4 @@ async function request_module( url = "https://dq.yam.com/post.php?id=12432" )
     }
 }
 
-module.exports = request_module;
+export default request_module;

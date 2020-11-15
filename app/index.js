@@ -1,7 +1,7 @@
-const request = require("./request-module.js");
-const parser = require("./parser/index.js");
+import request from "./request-module.js";
+import parser from "./parser/index.js";
 
-module.exports = async (url = "https://dq.yam.com/post.php?id=12432") =>
+export default async (url = "https://dq.yam.com/post.php?id=12432") =>
 {
     const content = await request(url);
     let result = {};

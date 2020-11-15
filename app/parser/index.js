@@ -1,12 +1,27 @@
-const default_text = `<!doctype html><html><head><title>Hello World</title><meta charset="utf-8" /></head><body><div><h1>Hello World</h1></div></body></html>`;
-const Meta = require( "./Meta.js" );
-const Content = require( "./Content.js" );
-const Reference = require( "./Reference.js" );
+// const { parse } = require("node-html-parser");
+import nhp from "node-html-parser";
 
-module.exports = ( content = default_text ) =>
+export default ( input = "" ) =>
 {
-    const meta = new Meta( content ).result();
-    const contents = new Content( content ).result().flat();
-    const references = new Reference( content ).result();
-    return { meta, contents, references };
-}
+    // const { document } = new JSDOM(input).window;
+    const article = nhp.parse( input ).querySelector("article");
+    const reposst_data = article.querySelector( "#mainContent article .repost .box" );
+    return {
+        meta: {
+            title: article.querySelector("h1").textContent,
+            date: article.querySelector("time").textContent,
+            author: article.querySelector(".author").textContent,
+            repost: reposst_data ? reposst_data.textContent : "",
+        },
+        contents: [...article.querySelectorAll(".innerContent p")].map( e=>
+            e.textContent
+        ),
+        images: [...article.querySelectorAll("figure")].map( el => ({
+            src: el.querySelector("img").src,
+            txt: el.querySelector("figcaption").textContent,
+        })),
+        references: [...article.querySelectorAll(".sectionWrap a")].map(e=>(
+            { href: e.href, name: e.textContent, }
+        ))
+    };
+};
