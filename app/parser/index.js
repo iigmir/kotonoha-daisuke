@@ -1,27 +1,26 @@
-// const { parse } = require("node-html-parser");
 import nhp from "node-html-parser";
 
 export default ( input = "" ) =>
 {
-    // const { document } = new JSDOM(input).window;
     const article = nhp.parse( input ).querySelector("article");
     const reposst_data = article.querySelector( "#mainContent article .repost .box" );
+    debugger;
     return {
         meta: {
-            title: article.querySelector("h1").textContent,
-            date: article.querySelector("time").textContent,
-            author: article.querySelector(".author").textContent,
-            repost: reposst_data ? reposst_data.textContent : "",
+            title: article.querySelector("h1").rawText,
+            date: article.querySelector("time").rawText,
+            author: article.querySelector(".author").rawText,
+            repost: reposst_data ? reposst_data.rawText : "",
         },
         contents: [...article.querySelectorAll(".innerContent p")].map( e=>
-            e.textContent
+            e.rawText
         ),
         images: [...article.querySelectorAll("figure")].map( el => ({
-            src: el.querySelector("img").src,
-            txt: el.querySelector("figcaption").textContent,
+            src: el.querySelector("img").attributes.src,
+            txt: el.querySelector("figcaption").text,
         })),
         references: [...article.querySelectorAll(".sectionWrap a")].map(e=>(
-            { href: e.href, name: e.textContent, }
+            { href: e.href, name: e.text, }
         ))
     };
 };
