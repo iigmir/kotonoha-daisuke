@@ -20,7 +20,7 @@ export default ( input = "" ) =>
             txt: el.querySelector("figcaption").text,
         })),
         references: [...article.querySelectorAll(".sectionWrap a")].map(e=>(
-            { href: e.href, name: e.text, }
+            { href: e.attributes.href, name: e.text, }
         ))
     };
 };
