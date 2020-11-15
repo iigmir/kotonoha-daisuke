@@ -1,3 +1,3 @@
-const app = require("./app/index.js");
+import app from "./app/index.js";
 
 app( input );
