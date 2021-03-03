@@ -4,7 +4,6 @@ export default ( input = "" ) =>
 {
     const article = nhp.parse( input ).querySelector("article");
     const reposst_data = article.querySelector( "#mainContent article .repost .box" );
-    debugger;
     return {
         meta: {
             title: article.querySelector("h1").rawText,
