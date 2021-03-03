@@ -6,20 +6,22 @@ export default ( input = "" ) =>
     const reposst_data = article.querySelector( "#mainContent article .repost .box" );
     return {
         meta: {
-            title: article.querySelector("h1").rawText,
-            date: article.querySelector("time").rawText,
-            author: article.querySelector(".author").rawText,
-            repost: reposst_data ? reposst_data.rawText : "",
+            title: article.querySelector("h1")?.rawText ?? null,
+            date: article.querySelector("time")?.rawText ?? null,
+            author: article.querySelector(".author")?.rawText ?? null,
+            repost: reposst_data.rawText ?? null,
         },
         contents: [...article.querySelectorAll(".innerContent p")].map( e=>
             e.rawText
         ),
         images: [...article.querySelectorAll("figure")].map( el => ({
-            src: el.querySelector("img").attributes.src,
-            txt: el.querySelector("figcaption").text,
+            src: el.querySelector("img").attributes?.src ?? null,
+            txt: el.querySelector("figcaption")?.text ?? null,
         })),
-        references: [...article.querySelectorAll(".sectionWrap a")].map(e=>(
-            { href: e.attributes.href, name: e.text, }
-        ))
+        references: [...article.querySelectorAll(".sectionWrap a")].map(e=>({
+                href: e.attributes?.href ?? null,
+                name: e.text ?? null,
+            })
+        )
     };
 };
