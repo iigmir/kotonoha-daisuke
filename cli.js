@@ -8,8 +8,14 @@ const export_to_json = (content = "") => fs.writeFile(
 
 const main = async(input = 1234) =>
 {
-    const res = await app(`https://dq.yam.com/post.php?id=${String(input)}`);
-    export_to_json( JSON.stringify( res ) );
+    try {
+        res = await app(`https://dq.yam.com/post.php?id=${String(counter)}`);
+    } catch (error) {
+        res = {};
+    } finally {
+        export_to_json( JSON.stringify( res ) );
+        return res;
+    }
 };
 
 main(parseInt(process.argv[2]));

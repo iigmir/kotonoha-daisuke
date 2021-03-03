@@ -6,6 +6,18 @@ const export_to_json = (id, content = "") => fs.writeFile(
     if( e ) throw e;
 });
 
+const action = async(counter = 0) =>
+{
+    let res = {};
+    try {
+        res = await app(`https://dq.yam.com/post.php?id=${String(counter)}`);
+    } catch (error) {
+        res = {};
+    } finally {
+        return res;
+    }
+};
+
 const main = async(start = 0, end = -1) =>
 {
     let res = "";
@@ -13,13 +25,13 @@ const main = async(start = 0, end = -1) =>
     {
         for( let counter = start; counter <= end; counter++ )
         {
-            res = await app(`https://dq.yam.com/post.php?id=${String(counter)}`);
+            res = await action( counter );
             export_to_json( counter, JSON.stringify( res ) );
         }
     }
     else
     {
-        res = await app(`https://dq.yam.com/post.php?id=${String(start)}`);
+        res = await action( start );
         export_to_json( start, JSON.stringify( res ) );
     }
 };
