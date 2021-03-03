@@ -3,5 +3,7 @@ node_modules
 debug
 .DS_Store
 
+debug.js
+
 result.json
 result/*.json
