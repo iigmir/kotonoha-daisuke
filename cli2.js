@@ -12,6 +12,7 @@ const action = async(counter = 0) =>
     try {
         res = await app(`https://dq.yam.com/post.php?id=${String(counter)}`);
     } catch (error) {
+        console.error( error );
         res = {};
     } finally {
         return res;
