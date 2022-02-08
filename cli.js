@@ -2,7 +2,12 @@ import app from "./app/index.js";
 import fs from "fs";
 
 const export_to_json = (content = "") => fs.writeFile(
-    "result.json", content, (e) => {
+    "./result/result.json", content, (e) => {
+    if( e ) throw e;
+});
+
+const export_to_js = (content = "") => fs.writeFile(
+    "./result/result.js", content, (e) => {
     if( e ) throw e;
 });
 
@@ -14,7 +19,8 @@ const main = async(input = 1234) =>
     } catch (error) {
         res = error;
     } finally {
-        export_to_json( JSON.stringify( res, null, 4 ) );
+        // export_to_js( res.source );
+        export_to_json( JSON.stringify(res.result, null, 4) );
         return res;
     }
 };
