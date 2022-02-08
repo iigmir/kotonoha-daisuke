@@ -1,7 +1,7 @@
-import request from "./ajax/index.js";
+import request from "./ajax/new.js";
 import parser from "./parser/index.js";
 
-export default (input) =>
+export default (input = "12436") =>
 {
     return new Promise( async (resolve, reject) =>
     {
