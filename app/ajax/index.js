@@ -5,7 +5,7 @@ function is_in_home_page( input = "" )
     return input.match( /<title>DQ 地球圖輯隊 帶你看透全世界<\/title>/g );
 }
 
-async function request_module( url = "https://dq.yam.com/post.php?id=12432" )
+async function request_module( url = "https://dq.yam.com/post/12432" )
 {
     if( /dq.yam.com/g.test( url ) === false )
     {

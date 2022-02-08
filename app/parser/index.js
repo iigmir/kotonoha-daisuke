@@ -11,5 +11,6 @@ export default ( input = "" ) =>
     // Render
     const context = vm.createContext({ result: {} });
     vm.runInContext(source, context);
+    debugger;
     return { source: source, result: context.result };
 };

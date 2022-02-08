@@ -2,19 +2,23 @@ import https from "https";
 
 export default (input = "12436") =>
 {
-    const options = {
-        hostname: "dq.yam.com",
-        port: 443,
-        path: `/post/${input}`,
-        method: "GET",
-    }
-    
+    const url = `https://dq.yam.com/post/${String(input)}`;
     return new Promise( (resolve, reject)  => {
-        const req = https.request(options, res =>
+        const req = https.get(url, res =>
         {
-            res.on("data", data => { resolve(data) })
+            res.setEncoding("utf8");
+            let html_text = "";
+            res.on( "data", chunk => { html_text += chunk });
+            req.on( "error", error => { reject(error) });
+            res.on( "end", () =>
+            {
+                try {
+                    resolve(html_text);
+                } catch (e) {
+                    console.error(e.message);
+                    reject(e);
+                }
+            });
         });
-        req.on("error", error => { reject(error) });
-        req.end();
     });
 };

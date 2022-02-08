@@ -5,8 +5,7 @@ export default (input = "12436") =>
 {
     return new Promise( async (resolve, reject) =>
     {
-        const url = `https://dq.yam.com/post/${String(input)}`;
-        const content = await request(url);
+        const content = await request(input);
         if( content )
         {
             resolve( parser( content ) );
