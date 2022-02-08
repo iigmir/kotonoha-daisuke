@@ -1,4 +1,4 @@
-import request from "./ajax/new.js";
+import request from "./ajax/index.js";
 import parser from "./parser/index.js";
 
 export default (input = "12436") =>

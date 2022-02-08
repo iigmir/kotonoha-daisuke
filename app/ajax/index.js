@@ -1,32 +1,24 @@
-import axios from "axios";
+import https from "https";
 
-function is_in_home_page( input = "" )
+export default (input = "12436") =>
 {
-    return input.match( /<title>DQ 地球圖輯隊 帶你看透全世界<\/title>/g );
-}
-
-async function request_module( url = "https://dq.yam.com/post/12432" )
-{
-    if( /dq.yam.com/g.test( url ) === false )
-    {
-        throw new Error( "The website is not from dq.yam.com!" );
-    }
-    try
-    {
-        const response = await axios.get( url );
-        if( response.status === 200 && !is_in_home_page( response.data ) )
+    const url = `https://dq.yam.com/post/${String(input)}`;
+    return new Promise( (resolve, reject)  => {
+        const req = https.get(url, res =>
         {
-            return response.data;
-        }
-        else
-        {
-            throw new Error( "The article requesting failed!" );
-        }
-    }
-    catch (error)
-    {
-        throw new Error( error );
-    }
-}
-
-export default request_module;
+            res.setEncoding("utf8");
+            let html_text = "";
+            res.on( "data", chunk => { html_text += chunk });
+            req.on( "error", error => { reject(error) });
+            res.on( "end", () =>
+            {
+                try {
+                    resolve(html_text);
+                } catch (e) {
+                    console.error(e.message);
+                    reject(e);
+                }
+            });
+        });
+    });
+};
