@@ -1,4 +1,4 @@
-import request_module from "../app/request-module.js";
+import request_module from "../app/ajax/index.js";
 import { doesNotThrow, rejects } from "assert";
 
 const main = () =>

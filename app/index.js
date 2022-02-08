@@ -1,4 +1,4 @@
-import request from "./request-module.js";
+import request from "./ajax/index.js";
 import parser from "./parser/index.js";
 
 export default (url = "https://dq.yam.com/post.php?id=12432") =>
