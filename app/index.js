@@ -1,14 +1,15 @@
 import request from "./request-module.js";
 import parser from "./parser/index.js";
 
-export default async (url = "https://dq.yam.com/post.php?id=12432") =>
+export default (url = "https://dq.yam.com/post.php?id=12432") =>
 {
-    const content = await request(url);
-    let result = {};
-    if( content )
+    return new Promise( async (resolve, reject) =>
     {
-        result = parser( content );
-        return result;
-    }
-    throw new Error("Something unusual thing happened!");
+        const content = await request(url);
+        if( content )
+        {
+            resolve( parser( content ) );
+        }
+        reject( "Something unusual thing happened!" );
+    });
 };

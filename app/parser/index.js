@@ -2,25 +2,11 @@ import nhp from "node-html-parser";
 
 export default ( input = "" ) =>
 {
-    const reposst_data = nhp.parse( input ).querySelector( "#mainContent article" );
+    const scripts = nhp.parse( input ).querySelectorAll( "script" );
+    const key_regex = /window.__NUXT__=/g;
+    const get_nuxt = ({ rawText }) => key_regex.test( rawText );
+    const source_script = [...scripts].filter( get_nuxt )[0] ?? { rawText: "" };
     return {
-        meta: {
-            title: reposst_data.querySelector("h1")?.rawText ?? null,
-            date: reposst_data.querySelector("time")?.rawText ?? null,
-            author: reposst_data.querySelector(".author")?.rawText ?? null,
-            repost: reposst_data.rawText ?? null,
-        },
-        contents: [...reposst_data.querySelectorAll(".innerContent p")].map( e=>
-            e.rawText
-        ),
-        images: [...reposst_data.querySelectorAll("figure")].map( el => ({
-            src: el.querySelector("img").attributes?.src ?? null,
-            txt: el.querySelector("figcaption")?.text ?? null,
-        })),
-        references: [...reposst_data.querySelectorAll(".sectionWrap a")].map(e=>({
-                href: e.attributes?.href ?? null,
-                name: e.text ?? null,
-            })
-        )
+        source: source_script.rawText.replace( key_regex, "" ),
     };
 };
