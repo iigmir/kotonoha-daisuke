@@ -15,7 +15,7 @@ const main = async(input = 1234) =>
 {
     let res = {};
     try {
-        res = await app(`https://dq.yam.com/post/${String(input)}`);
+        res = await app(input);
     } catch (error) {
         res = error;
     } finally {

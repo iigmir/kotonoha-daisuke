@@ -1,10 +1,11 @@
 import request from "./ajax/index.js";
 import parser from "./parser/index.js";
 
-export default (url = "https://dq.yam.com/post.php?id=12432") =>
+export default (input) =>
 {
     return new Promise( async (resolve, reject) =>
     {
+        const url = `https://dq.yam.com/post/${String(input)}`;
         const content = await request(url);
         if( content )
         {
