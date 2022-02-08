@@ -1,8 +1,8 @@
 import app from "./app/index.js";
 import fs from "fs";
 
-const export_to_json = (content = "") => fs.writeFile(
-    "./result/result.json", content, (e) => {
+const export_to_json = (content = "", filename = "result") => fs.writeFile(
+    `./result/${filename}.json`, content, (e) => {
     if( e ) throw e;
 });
 
@@ -20,7 +20,7 @@ const main = async(input = 1234) =>
         res = error;
     } finally {
         // export_to_js( res.source );
-        export_to_json( JSON.stringify(res.result, null, 4) );
+        export_to_json( JSON.stringify(res.result, null, 4), String(input) );
         return res;
     }
 };
