@@ -10,6 +10,6 @@ export default (input = "12436") =>
         {
             resolve( parser( content ) );
         }
-        reject( "Something unusual thing happened!" );
+        reject( "Something unusual happened!" );
     });
 };
