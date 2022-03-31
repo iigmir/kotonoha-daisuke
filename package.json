@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha ./spec/index.spec.js"
+    "test": "mocha ./spec/index.spec.js",
+    "start": "node cli.js"
   },
   "author": "iigmir",
   "license": "LGPL",
