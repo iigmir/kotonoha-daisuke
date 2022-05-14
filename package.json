@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "mocha ./spec/index.spec.js",
-    "start": "node cli.js"
+    "start": "node cli.js",
+    "rss": "node rss.js"
   },
   "author": "iigmir",
   "license": "LGPL",
@@ -14,6 +15,7 @@
     "mocha": "^9.2.0"
   },
   "dependencies": {
-    "node-html-parser": "^5.2.0"
+    "node-html-parser": "^5.2.0",
+    "xml-js": "^1.6.11"
   }
 }
