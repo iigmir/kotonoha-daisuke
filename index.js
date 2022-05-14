@@ -1,3 +1,3 @@
 import app from "./app/index.js";
 
-export const app;
+export default app;

@@ -2,20 +2,13 @@ import ajax from "./app/ajax/library.js";
 import convert from "xml-js";
 
 const api = "https://dq-api.azurewebsites.net/f-system/get-rss";
-
 const request = (api = "https://dq-api.azurewebsites.net/f-system/get-rss") =>
 {
-    return new Promise( (resolve, reject) =>
-    {
-        const req = ajax(api);
-        console.log(ajax, req);
-        req.then( content => {
-            resolve( convert.xml2json(content, { compact: true, spaces: 4 }) );;
-        }).catch( e => reject(e) );
-    });
+    return new Promise( ajax(api) );
 };
-
-request(api).then( cresult =>
+request(api).then( xml =>
 {
-    console.log(cresult);
+    const result = JSON.parse( convert.xml2json(xml, { compact: true }) );
+    const ids = result.rss.channel.item.map( ({ link }) => link._text.replace(/[^0-9]/g, "") );
+    console.log(ids);
 });
