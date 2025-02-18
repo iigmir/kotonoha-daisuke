@@ -12,7 +12,7 @@
   "author": "iigmir",
   "license": "LGPL",
   "devDependencies": {
-    "mocha": "^9.2.0"
+    "mocha": "^11.1.0"
   },
   "dependencies": {
     "node-html-parser": "^5.2.0",
